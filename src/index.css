@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Table styling */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.prose th,
+.prose td {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgb(229, 231, 235);
+}
+
+.dark .prose th,
+.dark .prose td {
+  border-color: rgb(55, 65, 81);
+}
+
+.prose tr:nth-child(even) {
+  background-color: rgb(249, 250, 251);
+}
+
+.dark .prose tr:nth-child(even) {
+  background-color: rgb(31, 41, 55);
+}
+
+/* Custom table container styling */
+.table-container {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  border: 1px solid rgb(229, 231, 235);
+  background-color: white;
+}
+
+.dark .table-container {
+  border-color: rgb(55, 65, 81);
+  background-color: rgb(31, 41, 55);
+}
+
+/* Table header styling */
+.table-header {
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(249, 250, 251);
+  border-bottom: 1px solid rgb(229, 231, 235);
+  cursor: pointer;
+}
+
+.dark .table-header {
+  background-color: rgb(17, 24, 39);
+  border-color: rgb(55, 65, 81);
+}
+
+.table-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: rgb(75, 85, 99);
+  transition: color 0.2s;
+}
+
+.dark .table-toggle {
+  color: rgb(209, 213, 219);
+}
+
+.table-toggle:hover {
+  color: rgb(37, 99, 235);
+}
+
+.dark .table-toggle:hover {
+  color: rgb(96, 165, 250);
+}
+
+.icon {
+  display: inline-flex;
+}
+
+/* Prevent body scrolling when TOC is open */
+body.toc-open {
+  overflow: hidden;
+}
+
+/* Make TOC sidebar scrollable independently */
+.toc-sidebar-content {
+  -webkit-overflow-scrolling: touch; /* For iOS momentum scrolling */
+}
+
+/* Ensure the floating button is visible */
+@media (max-width: 1023px) {
+  .toc-floating-button {
+    filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+  }
+}
