@@ -3,7 +3,6 @@ import TableOfContents from "./TableOfContents";
 import ReadingProgress from "./ReadingProgress";
 import { sanitizeHtml } from "../utils/sanitizer";
 import { useSettings } from "../context/SettingsContext";
-import { ChevronDown, ChevronUp } from "lucide-react";
 import ImageViewer from "./ImageViewer";
 import MobileTableOfContents from "./MobileTableOfContents";
 
@@ -540,7 +539,7 @@ const ArticleView: React.FC<ArticleViewProps> = ({ article, onNavigate }) => {
           </aside>
 
           <article
-            className={`lg:flex-1 bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8 border border-gray-200 dark:border-gray-700 ${fontFamilyClass}`}
+            className={`lg:flex-1 bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8 border border-gray-200 overflow-hidden dark:border-gray-700 ${fontFamilyClass}`}
           >
             {/* Position back button in the main content area */}
             {canGoBack && articleHistory.length > 1 && (

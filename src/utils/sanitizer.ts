@@ -328,7 +328,7 @@ export function sanitizeHtml(
   // Add styles for tables with transitions
   const tableStyles = doc.createElement("style");
   tableStyles.textContent = `
-  .collapsible-table-wrapper {
+ .collapsible-table-wrapper {
     margin: 1.5rem 0;
     border-radius: 0.75rem;
     overflow: hidden;
@@ -438,15 +438,37 @@ export function sanitizeHtml(
   .collapsible-table-content {
     max-height: 2000px;
     transition: max-height 0.3s ease-out, opacity 0.3s ease;
-    overflow: hidden;
+    overflow-x: scroll;
     opacity: 1;
-    
+    width: 100%;
+    padding: 0;
   }
   
-  .collapsible-table-content.hidden {
+  collapsible-table-content.hidden {
     max-height: 0;
     opacity: 0;
     transition: max-height 0.2s ease-in, opacity 0.2s ease;
+  }
+  .collapsible-table-content .table-scroll {
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+  .collapsible-table-content table {
+    width: 100%;
+    min-width: 600px;
+    margin: 0 !important;
+    border-collapse: collapse;
+  }
+  @media (max-width: 768px) {
+    .collapsible-table-content .table-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      max-width: 100vw;
+    }
+    .collapsible-table-content table {
+      min-width: 400px;
+    }
   }
   
   /* Table styling */
@@ -564,7 +586,10 @@ export function sanitizeHtml(
     content.className = `collapsible-table-content ${isOpen ? "" : "hidden"}`;
 
     // Copy the table into the content container
-    content.appendChild(table.cloneNode(true));
+    const scrollContainer = doc.createElement("div");
+    scrollContainer.className = "table-scroll";
+    scrollContainer.appendChild(table.cloneNode(true));
+    content.appendChild(scrollContainer);
 
     // Add the content to the wrapper
     wrapper.appendChild(content);
